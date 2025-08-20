@@ -109,8 +109,13 @@ app.get("/", (req, res) => {
 });
 
 // ---------------- START SERVER ----------------
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const PORT = process.env.PORT; // no default
+if (!PORT) {
+  console.error("❌ PORT not set. Railway sets this automatically.");
+  process.exit(1);
+}
+
+
 
 
 
