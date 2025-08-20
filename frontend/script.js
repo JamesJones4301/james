@@ -37,6 +37,10 @@ app.post("/api/donations", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 8080; // use PORT from Railway
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+const PORT = process.env.PORT;
+if (!PORT) {
+  console.error("❌ PORT not set. Railway sets this automatically.");
+  process.exit(1);
+}
 
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
