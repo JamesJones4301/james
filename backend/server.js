@@ -24,15 +24,9 @@ app.use(session({
 }));
 
 // ---------------- MONGODB CONNECTION ----------------
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ Connected to MongoDB Atlas"))
-.catch(err => {
-  console.error("❌ MongoDB connection error:", err);
-  process.exit(1);
-});
+mongoose.connect(MONGO_URI)
+  .then(() => console.log("✅ Connected to MongoDB Atlas"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
 
 // ---------------- API ROUTES ----------------
 app.get("/api/donations", async (req, res) => {
@@ -117,5 +111,6 @@ app.get("/", (req, res) => {
 // ---------------- START SERVER ----------------
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
