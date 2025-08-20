@@ -11,5 +11,6 @@ app.get("/", (req, res) => {
   res.send("Hello World! Server is running.");
 });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`🚀 Test server running on http://localhost:${PORT}`));
+const PORT = process.env.PORT || 8080; // use PORT from Railway
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
