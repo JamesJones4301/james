@@ -311,6 +311,7 @@
                 <div>Donor Name</div>
                 <div>Email</div>
                 <div>Phone</div>
+                <div>Address</div>
                 <div>Numbers</div>
                 <div>Amount</div>
                 <div>Payment Method</div>
@@ -325,7 +326,7 @@
     </div>
   
   <script>
-        const API_URL = "http://localhost:5000/api/donations";
+        const API_URL = "https://james-production-486a.up.railway.app/api/donations";
         const GOAL = 3500;
 
         async function loadDonations() {
@@ -360,26 +361,27 @@
             }
 
             container.innerHTML = donations.map(donation => `
-                <div class="table-row" data-label="Donation">
-                    <div data-label="Name:">${donation.name}</div>
-                    <div data-label="Email:">${donation.email}</div>
-                    <div data-label="Phone:">${donation.phone}</div>
-                    <div data-label="Numbers:">
-                        ${Array.isArray(donation.number) 
-                            ? donation.number.map(n => `<span class="number-badge">${n}</span>`).join('')
-                            : `<span class="number-badge">${donation.number}</span>`
-                        }
-                    </div>
-                    <div data-label="Amount:"><span class="amount">$${donation.amount}</span></div>
-                    <div data-label="Payment:">
-                        <span class="payment-badge payment-${donation.paymentMethod.toLowerCase()}">
-                            ${donation.paymentMethod}
-                        </span>
-                    </div>
-                    <div data-label="Date:">
-                        <span class="date">${new Date(donation.createdAt).toLocaleDateString()}</span>
-                    </div>
-                </div>
+            <div class="table-row" data-label="Donation">
+    <div data-label="Name:">${donation.name}</div>
+    <div data-label="Email:">${donation.email}</div>
+    <div data-label="Phone:">${donation.phone}</div>
+    <div data-label="Numbers:">
+        ${Array.isArray(donation.number) 
+            ? donation.number.map(n => `<span class="number-badge">${n}</span>`).join('')
+            : `<span class="number-badge">${donation.number}</span>`
+        }
+    </div>
+    <div data-label="Amount:"><span class="amount">$${donation.amount}</span></div>
+    <div data-label="Payment:">
+        <span class="payment-badge payment-${donation.paymentMethod.toLowerCase()}">
+            ${donation.paymentMethod}
+        </span>
+    </div>
+    <div data-label="Date:">
+        <span class="date">${new Date(donation.createdAt).toLocaleDateString()}</span>
+    </div>
+</div>
+
             `).join('');
         }
 
