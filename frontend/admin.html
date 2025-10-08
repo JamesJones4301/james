@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Johanna's Mission Trip Fundraiser</title>
+    <title>Admin Dashboard - James Mission Trip Fundraiser</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -110,14 +110,14 @@
             color: white;
             padding: 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(8, 1fr);
             gap: 15px;
             font-weight: 600;
         }
 
         .table-row {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(8, 1fr);
             gap: 15px;
             padding: 15px 20px;
             border-bottom: 1px solid #eee;
@@ -348,42 +348,42 @@
             }
         }
 
-        function displayDonations(donations) {
-            const container = document.getElementById('donationsList');
-            
-            if (donations.length === 0) {
-                container.innerHTML = `
-                    <div class="loading">
-                        <i class="fas fa-inbox"></i> No donations yet
-                    </div>
-                `;
-                return;
-            }
+       function displayDonations(donations) {
+    const container = document.getElementById('donationsList');
+    
+    if (donations.length === 0) {
+        container.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-inbox"></i> No donations yet
+            </div>
+        `;
+        return;
+    }
 
-            container.innerHTML = donations.map(donation => `
-            <div class="table-row" data-label="Donation">
-    <div data-label="Name:">${donation.name}</div>
-    <div data-label="Email:">${donation.email}</div>
-    <div data-label="Phone:">${donation.phone}</div>
-    <div data-label="Numbers:">
-        ${Array.isArray(donation.number) 
-            ? donation.number.map(n => `<span class="number-badge">${n}</span>`).join('')
-            : `<span class="number-badge">${donation.number}</span>`
-        }
-    </div>
-    <div data-label="Amount:"><span class="amount">$${donation.amount}</span></div>
-    <div data-label="Payment:">
-        <span class="payment-badge payment-${donation.paymentMethod.toLowerCase()}">
-            ${donation.paymentMethod}
-        </span>
-    </div>
-    <div data-label="Date:">
-        <span class="date">${new Date(donation.createdAt).toLocaleDateString()}</span>
-    </div>
-</div>
-
-            `).join('');
-        }
+    container.innerHTML = donations.map(donation => `
+        <div class="table-row" data-label="Donation">
+            <div data-label="Name:">${donation.name}</div>
+            <div data-label="Email:">${donation.email}</div>
+            <div data-label="Phone:">${donation.phone}</div>
+            <div data-label="Address:">${donation.address || '—'}</div>
+            <div data-label="Numbers:">
+                ${Array.isArray(donation.number) 
+                    ? donation.number.map(n => `<span class="number-badge">${n}</span>`).join('')
+                    : `<span class="number-badge">${donation.number}</span>`
+                }
+            </div>
+            <div data-label="Amount:"><span class="amount">$${donation.amount}</span></div>
+            <div data-label="Payment:">
+                <span class="payment-badge payment-${donation.paymentMethod.toLowerCase()}">
+                    ${donation.paymentMethod}
+                </span>
+            </div>
+            <div data-label="Date:">
+                <span class="date">${new Date(donation.createdAt).toLocaleDateString()}</span>
+            </div>
+        </div>
+    `).join('');
+}
 
         function updateStats(donations) {
             const totalDonations = donations.length;
