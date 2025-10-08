@@ -12,7 +12,7 @@ app.use(express.json());
 
 // ---------------- CONSTANTS ----------------
 const MONGO_URI =
-  "mongodb+srv://faransamra45:rskTZO9HavuLZuiM@cluster0.0fudkxs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://faransamra45:wXZHa3L3aZ1lBn0f@cluster0.0fudkxs.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0";
 const ADMIN_USER = "JamesJones4301";
 const ADMIN_PASS = "4301James#";
 
@@ -116,6 +116,7 @@ if (!PORT) {
 }
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
 
